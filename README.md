@@ -55,7 +55,7 @@ You can run this from Cloud Shell or locally with gcloud.
 
 ```
 ### PHASE 1 : SETUP THE ENVIRONMENT
-I createad the GKE cluster. I used this option to take advantage of GKE's fully managed, serverless option for running Kubernetes workloads.
+I createad a GKE cluster called order-cluster. I used this option to take advantage of GKE's fully managed, serverless option for running Kubernetes workloads.
 
 ```
 gcloud container clusters create-auto order-cluster --region=us-central1
