@@ -61,3 +61,20 @@ I createad a GKE cluster called order-cluster. I used this option to take advant
 gcloud container clusters create-auto order-cluster --region=us-central1
 
 ```
+Next I configured the api.py, the dockerfile and the requirements.txt
+
+Next is to test the Flask App on my local machine before containerizing it.
+
+```
+cd order-processor-gke/api
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+Setting environment variables. This passes the configuration into app.py without hardcoding my GCP project id directly in the code.
+
+The image below confirms the order API is running locally. 
+
+Next I used ```curl``` to simulate placing an order. ```curl``` lets me send HTTP requests directly to my Order API.
+
+I get ```{"error":"404 Resource not found (resource=order-topic)."}``` 
