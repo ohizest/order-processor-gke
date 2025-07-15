@@ -47,10 +47,17 @@ Kubernetes manifests to deploy everything to GKE.
 
 Includes optional autoscaling and Ingress configs.
 
+
 /pubsub/
 Shell script to create the Pub/Sub topic and subscription.
 
 You can run this from Cloud Shell or locally with gcloud.
 
+```
+### PHASE 1 : SETUP THE ENVIRONMENT
+I createad the GKE cluster. I used this option to take advantage of GKE's fully managed, serverless option for running Kubernetes workloads.
+
+```
+gcloud container clusters create-auto order-cluster --region=us-central1
 
 ```
