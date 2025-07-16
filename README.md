@@ -77,4 +77,44 @@ The image below confirms the order API is running locally.
 
 Next I used ```curl``` to simulate placing an order. ```curl``` lets me send HTTP requests directly to my Order API.
 
-I get ```{"error":"404 Resource not found (resource=order-topic)."}``` 
+I get ```{"error":"404 Resource not found (resource=order-topic)."}``` from the Google Pub/Sub Python client, which is trying to publish to a topic named order-topic, but the topic hasn’t been created at this stage in this project even though this is confirmation that the order API is running locally.
+
+After configuring the worker.py, we create a subscription named order-sub that will listen to the order-topic.
+
+Testing locally was successful. The data workflow: 
+
+Here’s how a typical order flows through this system:
+
+* Client → Flask API:
+
+Sends an HTTP request with order data (e.g., { "order_id": 123, "items": [...] }).
+
+*Flask API → Pub/Sub:
+
+Publishes the order as a message to order-topic.
+
+* Pub/Sub → Python Worker:
+
+The worker pulls the message from order-sub.
+
+Python Worker:
+
+Processes the order (e.g., saves to DB, sends confirmation).
+
+Acknowledges the message (removes it from Pub/Sub).
+
+
+Next is to configure the dockerfiles for the Flask API and for Pub/Sub Worker
+
+Next build the docker image for the worker and api directory using Cloud Build & Push.
+
+From your api directory:
+
+```
+gcloud builds submit --tag gcr.io/order-processing-microservice/order-api .
+```
+
+From your worker directory:
+```
+gcloud builds submit --tag gcr.io/order-processing-microservice/order-worker .
+```

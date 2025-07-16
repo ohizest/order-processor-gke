@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 
 # Environment variables
-PROJECT_ID = os.getenv("GCP_PROJECT_ID", "your-gcp-project-id")
+PROJECT_ID = os.getenv("GCP_PROJECT_ID", "order-processing-microservice")
 TOPIC_ID = os.getenv("PUBSUB_TOPIC_ID", "order-topic")
 
 # Initialize Pub/Sub publisher
@@ -21,11 +21,10 @@ def validate_jwt(token):
 
 @app.route('/place-order', methods=['POST'])
 def place_order():
-    auth_header = request.headers.get("Authorization", "")
-    token = auth_header.replace("Bearer ", "")
+    token = request.headers.get('Authorization', '').replace('Bearer ', '')
 
     if not validate_jwt(token):
-        return jsonify({"error": "Unauthorized"}), 401
+        return jsonify({'error': 'User not authorized to perform this action.'}), 403
 
     try:
         order_data = request.get_json()
