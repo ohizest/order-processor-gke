@@ -156,7 +156,7 @@ order-processor-gke/
 
 ## 🙋‍♂️ Author
 
-**Kevin Asikpat** – [LinkedIn](www.linkedin.com/in/kevin-asikpata)\
+**Kevin Asikpata** – [LinkedIn](www.linkedin.com/in/kevin-asikpata)\
 Cloud & Infrastructure Engineer | GCP Certified
 
 ---
