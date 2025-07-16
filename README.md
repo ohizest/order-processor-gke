@@ -131,8 +131,12 @@ curl -X POST http://<EXTERNAL-IP>/place-order \
 order-processor-gke/
 ├── api/                  # Flask API
 │   └── app.py
+│   ├── Dockerfile
+│   └── requirements.txt
 ├── worker/               # Pub/Sub consumer
-│   └── worker.py
+│   ├── worker.py
+│   ├── Dockerfile
+│   └── requirements.txt
 ├── k8s/                  # Kubernetes YAMLs
 │   ├── api-deployment.yaml
 │   ├── api-service.yaml
@@ -152,7 +156,7 @@ order-processor-gke/
 
 ## 🙋‍♂️ Author
 
-**Ohis Kevin** – [LinkedIn](https://linkedin.com/in/your-profile)\
+**Kevin Asikpat** – [LinkedIn](www.linkedin.com/in/kevin-asikpata)\
 Cloud & Infrastructure Engineer | GCP Certified
 
 ---
